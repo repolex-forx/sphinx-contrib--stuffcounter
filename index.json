@@ -1,0 +1,11 @@
+{
+  "org": "sphinx-contrib",
+  "repo": "stuffcounter",
+  "versions": [
+    {
+      "commit": "ffb2ac71d4d0eb8cd140dcfa21d2ce0b003f0252",
+      "tag": "",
+      "parsed_at": "2026-11-06T18:18:49.101628+00:00"
+    }
+  ]
+}

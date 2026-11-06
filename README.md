@@ -1,1 +1,102 @@
-Initializing
+# Repolex Knowledge Graph of sphinx-contrib/stuffcounter
+
+RDF knowledge graph data for [sphinx-contrib/stuffcounter](https://github.com/sphinx-contrib/stuffcounter), parsed by [repolex](https://repolex.ai).
+
+> **Note**: This data is experimental and subject to change without notice.
+
+## How to use this data
+
+The easiest way to get started is to install the [rlex](https://github.com/repolex-ai/rlex) query tool:
+
+```bash
+cargo install --git https://github.com/repolex-ai/rlex
+```
+
+Verify the install:
+
+```bash
+rlex --help
+```
+
+**rlex is designed to be used primarily by LLMs in a terminal.** Start up your favorite AI assistant and ask it to use rlex. It handles the SPARQL — you just ask questions in plain English.
+
+To load this repo's data:
+
+```bash
+rlex download sphinx-contrib/stuffcounter
+```
+
+Consult `rlex --help` for other options, including SPARQL queries, HTTP server, and interactive visualization.
+
+## Data structure
+
+All data is stored as gzip-compressed [N-Quads](https://www.w3.org/TR/n-quads/) (`.nq.gz`), a standard RDF format that can be loaded into any triplestore or graph database.
+
+```
+.
+├── aggregate
+│   ├── ast
+│   │   └── ffb2ac71d4d0eb8cd140dcfa21d2ce0b003f0252
+│   │       └── chunk-001.nq.gz
+│   └── repolex
+│       └── ffb2ac71d4d0eb8cd140dcfa21d2ce0b003f0252
+│           └── chunk-001.nq.gz
+├── blob
+│   ├── 02571bd4e40867c44ff858a7733aaf76218be4a6.nq.gz
+│   ├── 22dbd874846ff53112f82114f8b9cc924027f699.nq.gz
+│   ├── 27f573b87af11e2cbbd9f54eb1ee285a58550146.nq.gz
+│   ├── 298ea9e213e8c4c11f0431077510d4e325733c65.nq.gz
+│   ├── 2ce3014d566a17df03f18e564d1ac81a90440197.nq.gz
+│   ├── 34813e37432f3240e5fd739da8673a4ddd8e1dbe.nq.gz
+│   ├── 447d68653278abc91d81881c7fe0b91d786a1f00.nq.gz
+│   ├── 589877dce1e29c038d72f2fd3b169064e18d952e.nq.gz
+│   ├── 58c3183f20bec9364fb735aa7adf6d73c160976d.nq.gz
+│   ├── 5e4090017a9bec5de60a745d17007a9e95f31a43.nq.gz
+│   ├── 622a720f9d1a8af6b27a67a12b9ac4b522ea4a5f.nq.gz
+│   ├── 6661a788a7fab29ed6584c127323456ab4a1c968.nq.gz
+│   ├── 6a198a16a353c75d0319e71f65d9043fdb5dff18.nq.gz
+│   ├── 9605cb1b2dbab3ad1ce78daf1926b5ce227e94ca.nq.gz
+│   ├── a485625d427fe22dc5597483e2581751cc127516.nq.gz
+│   ├── c1f3ccdc4bb056d255831a1a3a6d35b3368dad68.nq.gz
+│   ├── ccd404f4c663c4e76a05fca98806fff4985e837a.nq.gz
+│   ├── d0a97eb9c9b4ada82ba8d2c55a495ef7c748ede8.nq.gz
+│   ├── e69de29bb2d1d6434b8b29ae775ad8c2e48c5391.nq.gz
+│   ├── ecb5cc5498029a78130854b471243b3a469d993b.nq.gz
+│   ├── f01857bb5fde3c53ee3221f82b31c9d22e165de2.nq.gz
+│   ├── f7567b60b4310a68ddabca7b0ab6e4ef4f886f48.nq.gz
+│   └── f774f3591d8801a42f80d90fb78f47eb0d5e51d1.nq.gz
+├── branch
+│   └── branch.nq.gz
+├── commit
+│   └── commit.nq.gz
+├── filetree
+│   └── ffb2ac71d4d0eb8cd140dcfa21d2ce0b003f0252.nq.gz
+├── issue
+│   └── issue.nq.gz
+├── pr
+│   └── pr.nq.gz
+└── tag
+    └── tag.nq.gz
+
+13 directories, 31 files
+```
+
+| Directory | What it contains |
+|-----------|-----------------|
+| `blob/` | Per-file AST graphs, content-addressed by git blob SHA. Each file in the source repo gets its own graph. |
+| `aggregate/ast/` | Combined AST graph per parsed commit. Merges all blob graphs for a snapshot of the entire codebase at that point. |
+| `aggregate/lsp/` | Language Server Protocol enrichment: resolved symbols, definitions, references, and type information. |
+| `aggregate/dataflow/` | Interprocedural data flow edges between functions and modules. |
+| `aggregate/repolex/` | Combined graph (AST + LSP + dataflow) per commit. |
+| `commit/` | Git commit metadata (author, date, message, parent links). |
+| `branch/` | Branch metadata. |
+| `tag/` | Tag metadata. |
+| `filetree/` | File tree snapshots per commit (which files existed and their blob SHAs). |
+| `audit/` | Code architecture and graph audit reports per commit. |
+
+## Source repository
+
+[sphinx-contrib/stuffcounter](https://github.com/sphinx-contrib/stuffcounter)
+
+---
+*Parsed on 2026-11-06 by [repolex](https://repolex.ai)*
